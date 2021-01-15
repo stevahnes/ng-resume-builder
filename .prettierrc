@@ -1,0 +1,14 @@
+{
+  "bracketSpacing": true,
+  "semi": true,
+  "trailingComma": "none",
+  "singleQuote": true,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": [".ts", "*.css", "*.json", "*.md"],
+      "excludeFiles": [".js", "*.d.ts"]
+    }
+  ]
+}
