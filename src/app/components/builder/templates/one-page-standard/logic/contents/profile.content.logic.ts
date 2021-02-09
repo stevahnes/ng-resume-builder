@@ -24,6 +24,7 @@ export function constructProfileContent(
     profile,
     pageParameters.PORTRAIT_WIDTH - 2 * standard.MARGIN
   );
+  cursor.setXCoordinate(standard.MARGIN);
   writeLeft(jsPDFInstance, profileTexts, cursor);
   enterAndCheckMargin(
     jsPDFInstance,

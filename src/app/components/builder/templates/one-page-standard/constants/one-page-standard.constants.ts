@@ -36,3 +36,5 @@ export const UNDEFINED_PERIOD_END = 'Present';
 export const BULLETS = '• ';
 
 export const BULLETS_WIDTH = 3;
+
+export const AWARDS_AND_CERTS_DATE_WIDTH = 40;

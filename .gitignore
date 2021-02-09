@@ -44,3 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Coverage Reports
+.nyc_output
+coverage
+*.lcov

@@ -12,11 +12,10 @@ import {
 import {
   BULLETS,
   BULLETS_WIDTH,
-  DEFAULT_LINE_HEIGHT
+  DEFAULT_LINE_HEIGHT,
+  AWARDS_AND_CERTS_DATE_WIDTH
 } from '../../constants/one-page-standard.constants';
 import { trimEnd, upperFirst } from 'lodash';
-
-const AWARDS_AND_CERTS_DATE_WIDTH = 40;
 
 export function constructAwardsAndCertificationsContent(
   awardsAndCertifications: AwardsAndCertification[],
@@ -27,6 +26,10 @@ export function constructAwardsAndCertificationsContent(
 ): void {
   cursor.setSize(standard.TEXT_FONT_SIZE);
   awardsAndCertifications.forEach((awardOrCert, index) => {
+    updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.REGULAR, cursor.getSize());
+    cursor.setXCoordinate(standard.MARGIN);
+    writeLeft(jsPDFInstance, BULLETS, cursor);
+    cursor.setXCoordinate(standard.MARGIN + BULLETS_WIDTH);
     const awardOrCertTexts: string[] = splitTextToSize(
       jsPDFInstance,
       trimEnd(upperFirst(awardOrCert.name), '.'),
@@ -35,10 +38,6 @@ export function constructAwardsAndCertificationsContent(
         BULLETS_WIDTH -
         AWARDS_AND_CERTS_DATE_WIDTH
     );
-    updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.REGULAR, cursor.getSize());
-    cursor.setXCoordinate(standard.MARGIN);
-    writeLeft(jsPDFInstance, BULLETS, cursor);
-    cursor.setXCoordinate(standard.MARGIN + BULLETS_WIDTH);
     writeLeft(jsPDFInstance, awardOrCertTexts, cursor);
     updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
     cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);

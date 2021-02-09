@@ -1,0 +1,20 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+    - node_modules
+before_install:
+  - pip install --user codecov
+script:
+  - npm run ci
+after_sucess:
+  - npm run report-coverage
+before_deploy:
+  - npm install netlify-cli -g
+  - npm run build:prod
+deploy:
+  provider: script
+  edge: true
+  script: netlify deploy --dir=dist/ng-resume-builder --prod
+  on:
+    branch: main

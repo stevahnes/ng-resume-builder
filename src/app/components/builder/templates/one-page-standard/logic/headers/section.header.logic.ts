@@ -21,8 +21,8 @@ export function constructSectionHeader(
   pageParameters: FormatParameters
 ): void {
   cursor.setSize(standard.SECTION_FONT_SIZE);
-  cursor.setXCoordinate(standard.MARGIN);
   updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
+  cursor.setXCoordinate(standard.MARGIN);
   writeLeft(jsPDFInstance, sectionHeaderText, cursor);
   const sectionLine = cursor.getYCoordinate() + ((DEFAULT_LINE_HEIGHT - 1) * cursor.getSize()) / 2;
   drawPageWidthLine(jsPDFInstance, standard, pageParameters, sectionLine, SECTION_LINE_WIDTH);

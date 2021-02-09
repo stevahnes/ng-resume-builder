@@ -13,6 +13,7 @@ export function constructHeader(
   pageParameters: FormatParameters
 ): void {
   /** Construct Title */
+  cursor.setSize(standard.HEADER_FONT_SIZE);
   updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
   cursor.setCoordinates(pageParameters.PORTRAIT_WIDTH / 2, standard.MARGIN);
   writeCenter(jsPDFInstance, upperCase(header.name), cursor);

@@ -4,10 +4,10 @@ import { OnePageStandard } from '../constants/one-page-standard.constants';
 import { SAMPLE_RESUME } from '../constants/sample-resume.constants.spec';
 import { generateOnePageStandardPDF } from './core.logic';
 
-const resume = SAMPLE_RESUME;
+const resume = { ...SAMPLE_RESUME };
 
 describe('CoreLogic', () => {
-  it('should call through the jsPDF functions and continuously update cursor', () => {
+  it('should call through the jsPDF functions and continuously update cursor building resume', () => {
     const jsPDFInstance = new jsPDF(
       OnePageStandard.ORIENTATION,
       OnePageStandard.UNIT,

@@ -35,7 +35,7 @@ export function constructEducationContent(
     cursor.setXCoordinate(standard.MARGIN);
     writeLeft(jsPDFInstance, education.qualification, cursor);
     if (education.honorsAndGrade) {
-      jsPDFInstance.setFont(standard.FONT_NAME, 'normal');
+      updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.REGULAR, cursor.getSize());
       cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);
       writeRight(jsPDFInstance, education.honorsAndGrade, cursor);
     }

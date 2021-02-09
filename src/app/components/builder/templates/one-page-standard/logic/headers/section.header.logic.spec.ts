@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { POINT_TO_MM } from 'src/app/components/builder/constants';
+import { POINT_TO_MM } from '../../../../constants';
 import { Cursor } from '../../../../class';
 import { FontStyle } from '../../../../utils';
 import {
@@ -30,12 +30,12 @@ describe('SectionHeaderLogic', () => {
     spyOn(cursor, 'setSize').and.callThrough();
     constructSectionHeader(headerText, jsPDFInstance, cursor, OnePageStandard, A4Parameters);
     expect(cursor.setSize).toHaveBeenCalledOnceWith(OnePageStandard.SECTION_FONT_SIZE);
-    expect(cursor.setXCoordinate).toHaveBeenCalledOnceWith(OnePageStandard.MARGIN);
     expect(jsPDFInstance.setFont).toHaveBeenCalledOnceWith(
       OnePageStandard.FONT_NAME,
       FontStyle.BOLD
     );
     expect(jsPDFInstance.setFontSize).toHaveBeenCalledOnceWith(cursor.getSize());
+    expect(cursor.setXCoordinate).toHaveBeenCalledOnceWith(OnePageStandard.MARGIN);
     expect(jsPDFInstance.text).toHaveBeenCalledOnceWith(
       headerText,
       cursor.getXCoordinate(),

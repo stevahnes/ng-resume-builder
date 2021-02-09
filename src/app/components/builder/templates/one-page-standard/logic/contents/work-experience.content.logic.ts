@@ -4,6 +4,7 @@ import { Cursor } from '../../../../class';
 import {
   enterAndCheckMargin,
   FontStyle,
+  splitTextToSize,
   updateFontAndSize,
   writeLeft,
   writeRight
@@ -39,7 +40,7 @@ export function constructWorkExperienceContent(
       standard,
       pageParameters
     );
-    jsPDFInstance.setFont(standard.FONT_NAME, 'normal');
+    updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.REGULAR, cursor.getSize());
     constructWorkDescriptions(work.descriptions, jsPDFInstance, cursor, standard, pageParameters);
     if (index < works.length - 1) {
       enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
@@ -75,7 +76,8 @@ function constructWorkDescriptions(
   pageParameters: FormatParameters
 ): void {
   descriptions.forEach((description) => {
-    const descriptionTexts: string[] = jsPDFInstance.splitTextToSize(
+    const descriptionTexts: string[] = splitTextToSize(
+      jsPDFInstance,
       `${trimEnd(upperFirst(description), '.')}.`,
       pageParameters.PORTRAIT_WIDTH - 2 * standard.MARGIN - BULLETS_WIDTH
     );

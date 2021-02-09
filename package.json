@@ -11,7 +11,9 @@
     "format:check": "npx prettier --list-different \"src/app/**/*.{ts,js,css,json,scss,html,md}\"",
     "format:fix": "npx prettier --write \"src/app/**/*.{ts,js,css,json,scss,html,md}\"",
     "e2e": "ng e2e",
-    "build:prod": "npm run format:check && npm run lint && npm run ci:test && ng build --prod"
+    "build:prod": "ng build --prod",
+    "report-coverage": "codecov",
+    "ci": "npm run format:check && npm run lint && npm run ci:test"
   },
   "private": true,
   "dependencies": {
@@ -58,7 +60,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {

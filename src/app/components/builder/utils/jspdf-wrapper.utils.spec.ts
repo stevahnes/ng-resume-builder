@@ -174,10 +174,11 @@ describe('jsPDFWrapper', () => {
       );
       const lineHeight = Math.round(Math.random() * 10);
       const times = Math.round(Math.random() * 10);
-      spyOn(cursor, 'incrementYCoordinate').and.callThrough();
+      const incrementYCoordinateSpy = spyOn(cursor, 'incrementYCoordinate').and.callThrough();
       enterAndCheckMargin(pdfInstance, cursor, OnePageStandard, A4Parameters, lineHeight, times);
-      expect(cursor.incrementYCoordinate).toHaveBeenCalledOnceWith(
-        times * lineHeight * (cursor.getSize() * POINT_TO_MM)
+      expect(incrementYCoordinateSpy.calls.first().args[0]).toBeCloseTo(
+        times * lineHeight * (cursor.getSize() * POINT_TO_MM),
+        5
       );
     });
   });
