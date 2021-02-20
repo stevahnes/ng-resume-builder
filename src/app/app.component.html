@@ -1,6 +1,6 @@
-<ul>
-  <li><a [routerLink]="['/']">Home</a></li>
-  <li><a [routerLink]="['/about']">About</a></li>
+<ul ngbNav #nav="ngbNav" [(activeId)]="activeId" class="nav-tabs">
+  <li [ngbNavItem]="'/'"><a ngbNavLink [routerLink]="['/']">Home </a></li>
+  <li [ngbNavItem]="'/about'"><a ngbNavLink [routerLink]="['/about']">About </a></li>
 </ul>
 
 <router-outlet></router-outlet>

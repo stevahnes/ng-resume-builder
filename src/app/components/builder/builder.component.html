@@ -1,2 +1,38 @@
-<input type="file" #file (change)="onFileAdded($event)" />
-<button (click)="generatePDF()">Generate PDF</button>
+<div class="row no-gutters">
+  <div class="column file-zone" appFileDrop (fileDropped)="onFileDropped($event)">
+    <input type="file" #file id="file" id (change)="onFileAdded($event)" />
+    <ng-container *ngIf="!uploadedFileName; else fileUploaded">
+      <img src="../../../assets/upload.svg" alt="upload files icon" />
+      <h3>Drag and drop file here</h3>
+      <h4>or</h4>
+      <label for="file">
+        <button class="primary browse-file" (click)="file.click()">Browse for file</button>
+      </label>
+    </ng-container>
+    <ng-template #fileUploaded>
+      <img src="../../../assets/file.svg" alt="uploaded file icon" />
+      <h3>{{ uploadedFileName }}</h3>
+      <h4>
+        <span [ngClass]="{ error: parseError }" *ngIf="parseError; else noError">
+          Please upload a valid JSON file.
+        </span>
+        <ng-template #noError>
+          <span [ngClass]="{ warning: processingFile }" *ngIf="processingFile; else allOK">
+            Processing uploaded file ...
+          </span>
+          <ng-template #allOK>&nbsp;</ng-template>
+        </ng-template>
+      </h4>
+      <label for="file">
+        <button class="secondary change-file" (click)="file.click()">Change file</button>
+      </label>
+      <button
+        class="primary generate-pdf"
+        (click)="generatePDF()"
+        [disabled]="parseError || processingFile"
+      >
+        Generate PDF
+      </button>
+    </ng-template>
+  </div>
+</div>

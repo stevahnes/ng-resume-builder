@@ -1,0 +1,76 @@
+.file-zone {
+  width: 600px;
+  height: 400px;
+  padding: 2rem;
+  text-align: center;
+  border: dashed 1px #808080;
+  border-radius: 20px;
+  position: relative;
+  margin: 20px auto;
+
+  &.file-over img {
+    animation: hovered 0.2s;
+    animation-fill-mode: forwards;
+  }
+
+  input[type='file'] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+  }
+
+  button {
+    width: 183px;
+    height: 44px;
+    border-radius: 21.5px;
+    padding: 8px 16px;
+    margin: 0px 8px;
+    &.primary {
+      color: #fff;
+      border: none;
+      background-color: #007bff;
+    }
+    &.secondary {
+      color: #007bff;
+      border: solid 1px #007bff;
+      background-color: #ffffff;
+    }
+    &:disabled {
+      color: #808080;
+      border: solid 1px #808080;
+      background-color: #c7c7c7;
+      cursor: not-allowed;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 400;
+    .error {
+      color: #c62828;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+@keyframes hovered {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  100% {
+    transform: translate(10px, -10px) rotate(10deg);
+  }
+}
