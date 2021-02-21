@@ -46,14 +46,18 @@ export class BuilderComponent implements OnInit {
     fileReader.onload = () => {
       const fileContent: string = fileReader.result as string;
       if (fileContent) {
-        try {
-          this.resume = JSON.parse(fileContent);
-          this.processingFile = false;
-        } catch (error) {
-          this.parseError = true;
-        }
+        this.parseFileContent(fileContent);
       }
     };
     fileReader.readAsText(file);
+  }
+
+  private parseFileContent(fileContent: string): void {
+    try {
+      this.resume = JSON.parse(fileContent);
+      this.processingFile = false;
+    } catch (error) {
+      this.parseError = true;
+    }
   }
 }

@@ -68,4 +68,22 @@ describe('BuilderComponent', () => {
       expect((component as any).processFile).toHaveBeenCalledOnceWith(file);
     });
   });
+
+  describe('parseFileContent', () => {
+    it('should update resume if parsing is successful', () => {
+      (component as any).resume = {};
+      const content = '{"testKey": "testVal"}';
+      (component as any).parseFileContent(content);
+      expect(component.parseError).toBeFalse();
+      expect((component as any).resume).toEqual(JSON.parse(content));
+    });
+
+    it('should catch error and update parseError state if parsing is unsuccessful', () => {
+      (component as any).resume = {};
+      const content = 'UnexpectedChar{"testKey": "testVal"}';
+      (component as any).parseFileContent(content);
+      expect(component.parseError).toBeTrue();
+      expect((component as any).resume).toEqual({});
+    });
+  });
 });
