@@ -18,6 +18,7 @@ export class BuilderComponent implements OnInit {
   public uploadedFileName = '';
   public processingFile = false;
   public parseError = false;
+  public createFromScratch = false;
   private resume: Resume = EMPTY_RESUME;
 
   ngOnInit(): void {}
@@ -35,6 +36,8 @@ export class BuilderComponent implements OnInit {
       }
     }
   }
+
+  applyCreateFromScratch = () => (this.createFromScratch = true);
 
   generatePDF = () => generateOnePageStandardPDF(this.resume, onePagePDF, onePageCursor);
 

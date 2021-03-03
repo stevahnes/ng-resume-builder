@@ -2,3 +2,22 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+/* Importing ng-select default SCSS file. */
+@import '~@ng-select/ng-select/themes/default.theme.css';
+
+.container {
+  margin: 20px auto;
+}
+
+.column {
+  width: 100%;
+
+  &.center-items {
+    display: grid;
+    place-items: center;
+  }
+
+  .content {
+    max-width: 800px;
+  }
+}

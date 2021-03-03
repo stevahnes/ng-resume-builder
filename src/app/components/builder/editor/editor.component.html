@@ -1,0 +1,134 @@
+<div class="content">
+  <form [formGroup]="resumeForm">
+    <form [formGroup]="headerForm">
+      <div>
+        <input type="text" formControlName="name" placeholder="Name" />
+      </div>
+      <div>
+        <input type="text" formControlName="subtitle" placeholder="Subtitle" />
+      </div>
+      <div>
+        <input type="text" formControlName="leftDetail" placeholder="Left-side link" />
+        <input type="text" formControlName="email" placeholder="Email address" />
+        <input type="text" formControlName="phone" placeholder="Phone number" />
+        <input type="text" formControlName="rightDetail" placeholder="Right-side link" />
+      </div>
+    </form>
+    <textarea formControlName="profile" placeholder="Tell us more about yourself..."></textarea>
+    <ng-select
+      [multiple]="true"
+      [addTag]="true"
+      [isOpen]="false"
+      [selectOnTab]="true"
+      formControlName="competencies"
+      placeholder="Type your competencies and press enter"
+    >
+    </ng-select>
+    <div formArrayName="work">
+      <div *ngFor="let work of getResumeWorkFormArrayControls(resumeForm); let i = index">
+        <form [formGroupName]="i">
+          <div class="row no-gutters">
+            <div class="col-6">
+              <input type="text" formControlName="company" placeholder="Company name" />
+            </div>
+            <div class="col-6">
+              <input type="text" formControlName="location" placeholder="Location" />
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-6" formArrayName="designations">
+              <div
+                *ngFor="
+                  let designations of getWorkDesignationFormArrayControls(work);
+                  let i = index
+                "
+              >
+                <input type="text" [formControlName]="i" placeholder="Designation" />
+              </div>
+            </div>
+            <div class="col-6" formArrayName="periods">
+              <div *ngFor="let period of getWorkPeriodsFormArrayControls(work); let i = index">
+                <form [formGroupName]="i">
+                  <div class="row no-gutters">
+                    <div class="col-6">
+                      <input type="text" formControlName="start" placeholder="From" />
+                    </div>
+                    <div class="col-6">
+                      <input type="text" formControlName="end" placeholder="To" />
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div formArrayName="descriptions">
+            <div
+              class="row no-gutters"
+              *ngFor="let descriptions of getWorkDescriptionsFormArrayControls(work); let i = index"
+            >
+              <input type="text" [formControlName]="i" placeholder="Description" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div formArrayName="education">
+      <div *ngFor="let education of getResumeEducationFormArrayControls(resumeForm); let i = index">
+        <form [formGroupName]="i">
+          <div class="row no-gutters">
+            <div class="col-6">
+              <input type="text" formControlName="institution" placeholder="Institution name" />
+            </div>
+            <div class="col-6">
+              <form formGroupName="period">
+                <div class="row no-gutters">
+                  <div class="col-6">
+                    <input type="text" formControlName="start" placeholder="From" />
+                  </div>
+                  <div class="col-6">
+                    <input type="text" formControlName="end" placeholder="To" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-6" formArrayName="qualification">
+              <div
+                class="row no-gutters"
+                *ngFor="
+                  let qualification of getEducationQualificationFormArrayControls(education);
+                  let i = index
+                "
+              >
+                <input type="text" [formControlName]="i" placeholder="Qualification" />
+              </div>
+            </div>
+            <div class="col-6">
+              <input type="text" formControlName="honorsAndGrade" placeholder="Honors and grade" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div formArrayName="awardsAndCertifications">
+      <div
+        *ngFor="
+          let education of getResumeAwardsAndCertificationsFormArrayControls(resumeForm);
+          let i = index
+        "
+      >
+        <form [formGroupName]="i">
+          <div class="row no-gutters">
+            <div class="col-6">
+              <input type="text" formControlName="name" placeholder="Award or certification name" />
+            </div>
+            <div class="col-6">
+              <input type="text" formControlName="acquiredDate" placeholder="Acquired date" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </form>
+</div>
