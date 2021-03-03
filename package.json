@@ -27,6 +27,7 @@
     "@angular/platform-browser-dynamic": "~11.0.9",
     "@angular/router": "~11.0.9",
     "@ng-bootstrap/ng-bootstrap": "^9.0.0",
+    "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.5.0",
     "jspdf": "^2.3.0",
     "lodash": "^4.17.20",

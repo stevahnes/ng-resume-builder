@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BuilderComponent } from './builder.component';
 import { FileDropDirective } from './directives/file-drop.directive';
+import { SAMPLE_RESUME_JSON } from './sample-data.builder.component.spec';
 
 describe('BuilderComponent', () => {
   let component: BuilderComponent;
@@ -9,6 +11,7 @@ describe('BuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, FormsModule],
       declarations: [BuilderComponent, FileDropDirective]
     }).compileComponents();
   });
@@ -27,6 +30,7 @@ describe('BuilderComponent', () => {
     it('should trigger the core logic of the template selected to generate PDF', () => {
       component.uploadedFileName = 'SAMPLE_FILE';
       component.parseError = false;
+      component.displayFormEditor = true;
       fixture.detectChanges();
       const generatePDFSpy = spyOn(component, 'generatePDF');
       const generateButton: HTMLButtonElement = fixture.debugElement.queryAll(
@@ -72,7 +76,7 @@ describe('BuilderComponent', () => {
   describe('parseFileContent', () => {
     it('should update resume if parsing is successful', () => {
       (component as any).resume = {};
-      const content = '{"testKey": "testVal"}';
+      const content = SAMPLE_RESUME_JSON;
       (component as any).parseFileContent(content);
       expect(component.parseError).toBeFalse();
       expect((component as any).resume).toEqual(JSON.parse(content));
