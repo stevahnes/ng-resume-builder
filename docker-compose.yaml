@@ -1,0 +1,9 @@
+services:
+  ng-resume:
+    image: ng-resume-1
+    build: 
+      context: ./
+      dockerfile: ./ng-resume.Dockerfile
+    container_name: ng-resume-1
+    ports:
+      - '4200:4200'
