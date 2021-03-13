@@ -11,11 +11,11 @@
         <img src="../../../assets/upload.svg" alt="upload files icon" />
         <h3>Drag and drop file here</h3>
         <h4>or</h4>
-        <button class="secondary create-new" (click)="applyCreateFromScratch()">
+        <button class="btn secondary create-new" (click)="applyCreateFromScratch()">
           Create from scratch
         </button>
         <label for="file">
-          <button class="primary browse-file" (click)="file.click()">Browse for file</button>
+          <button class="btn primary browse-file" (click)="file.click()">Browse for file</button>
         </label>
       </ng-container>
       <ng-template #fileUploaded>
@@ -32,20 +32,31 @@
             <ng-template #allOK>&nbsp;</ng-template>
           </ng-template>
         </h4>
+        <button class="btn secondary create-new" (click)="applyCreateFromScratch()">
+          Create from scratch
+        </button>
         <label for="file">
-          <button class="primary change-file" (click)="file.click()">Change file</button>
+          <button class="btn primary change-file" (click)="file.click()">Change file</button>
         </label>
       </ng-template>
     </div>
     <ng-template #displayEditor>
+      <div class="mb-5">
+        <button class="btn secondary back-home" (click)="setDisplayFormEditor(false)">
+          Back to Home
+        </button>
+      </div>
       <app-editor [resumeForm]="resumeForm"></app-editor>
-      <button
-        class="primary generate-pdf"
-        (click)="generatePDF()"
-        [disabled]="parseError || processingFile"
-      >
-        Generate PDF
-      </button>
+      <div class="mt-5">
+        <button class="btn secondary save-resume" (click)="save()">Save</button>
+        <button
+          class="btn primary generate-pdf"
+          (click)="generatePDF()"
+          [disabled]="parseError || processingFile || resumeForm.invalid"
+        >
+          Generate PDF
+        </button>
+      </div>
     </ng-template>
   </div>
 </div>

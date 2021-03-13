@@ -1,0 +1,66 @@
+div {
+  &.group {
+    position: relative;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+  }
+  &.sub-group {
+    position: relative;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+}
+
+input,
+textarea,
+ng-select {
+  width: 100%;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid #007bff;
+  }
+}
+
+textarea {
+  height: 8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+ng-select {
+  ::ng-deep {
+    span.ng-arrow-wrapper {
+      display: none;
+    }
+  }
+}
+
+button {
+  &.btn-remove {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    outline: 0;
+    background: none;
+    span {
+      color: #808080;
+    }
+    &:hover {
+      span {
+        color: #dc3545;
+      }
+    }
+  }
+}

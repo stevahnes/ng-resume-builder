@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { saveAs } from 'file-saver';
 import jsPDF from 'jspdf';
 import { Cursor } from './class';
 import { EMPTY_RESUME } from './constants';
@@ -41,7 +42,21 @@ export class BuilderComponent implements OnInit {
 
   applyCreateFromScratch(): void {
     this.resumeForm = this.formService.buildResumeForm();
-    this.displayFormEditor = true;
+    this.resume = EMPTY_RESUME;
+    this.uploadedFileName = '';
+    this.setDisplayFormEditor(true);
+  }
+
+  setDisplayFormEditor(value: boolean): void {
+    this.displayFormEditor = value;
+  }
+
+  save(): void {
+    this.updateResume(this.resume, this.resumeForm);
+    const resumeBlob = new Blob([JSON.stringify(this.resume)], {
+      type: 'text/plain;charset=utf-8'
+    });
+    saveAs(resumeBlob, 'resume.txt');
   }
 
   generatePDF(): void {
@@ -81,6 +96,7 @@ export class BuilderComponent implements OnInit {
       this.setWorkResumeForm(this.resumeForm, this.resume);
       this.setEducationResumeForm(this.resumeForm, this.resume);
       this.setAwardsAndCertificationsResumeForm(this.resumeForm, this.resume);
+      this.resumeForm.updateValueAndValidity();
       this.displayFormEditor = true;
       this.processingFile = false;
     } catch (error) {

@@ -3,7 +3,7 @@
   height: 400px;
   padding: 2rem;
   text-align: center;
-  border: dashed 1px #808080;
+  border: dashed 1px #ccc;
   border-radius: 20px;
 
   &.file-over img {
@@ -18,30 +18,6 @@
     height: 0;
     top: 0;
     left: 0;
-  }
-
-  button {
-    width: 183px;
-    height: 44px;
-    border-radius: 21.5px;
-    padding: 8px 16px;
-    margin: 0px 8px;
-    &.primary {
-      color: #fff;
-      border: none;
-      background-color: #007bff;
-    }
-    &.secondary {
-      color: #007bff;
-      border: solid 1px #007bff;
-      background-color: #ffffff;
-    }
-    &:disabled {
-      color: #808080;
-      border: solid 1px #808080;
-      background-color: #c7c7c7;
-      cursor: not-allowed;
-    }
   }
 
   h3 {

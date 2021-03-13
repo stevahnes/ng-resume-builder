@@ -1,42 +1,92 @@
 <div class="content">
   <form [formGroup]="resumeForm">
     <div [formGroup]="getResumeHeaderFormGroup(resumeForm)">
-      <div>
-        <input type="text" formControlName="name" placeholder="Name" />
+      <div class="group">
+        <input class="h3 text-center" type="text" formControlName="name" placeholder="Full Name" />
       </div>
-      <div>
-        <input type="text" formControlName="subtitle" placeholder="Subtitle" />
+      <div class="group">
+        <input
+          class="h4 text-center"
+          type="text"
+          formControlName="subtitle"
+          placeholder="Titles and Credentials"
+        />
       </div>
-      <div>
-        <input type="text" formControlName="leftDetail" placeholder="Left-side link" />
-        <input type="text" formControlName="email" placeholder="Email address" />
-        <input type="text" formControlName="phone" placeholder="Phone number" />
-        <input type="text" formControlName="rightDetail" placeholder="Right-side link" />
+      <div class="group row no-gutters">
+        <div class="col-3 px-1">
+          <input
+            class="text-center"
+            type="text"
+            formControlName="leftDetail"
+            placeholder="Left-side link"
+          />
+        </div>
+        <div class="col-3 px-1">
+          <input
+            class="text-center"
+            type="text"
+            formControlName="email"
+            placeholder="Email address"
+          />
+        </div>
+        <div class="col-3 px-1">
+          <input
+            class="text-center"
+            type="text"
+            formControlName="phone"
+            placeholder="Phone number"
+          />
+        </div>
+        <div class="col-3 px-1">
+          <input
+            class="text-center"
+            type="text"
+            formControlName="rightDetail"
+            placeholder="Right-side link"
+          />
+        </div>
       </div>
     </div>
-    <textarea formControlName="profile" placeholder="Tell us more about yourself..."></textarea>
-    <ng-select
-      [multiple]="true"
-      [addTag]="true"
-      [isOpen]="false"
-      [selectOnTab]="true"
-      formControlName="competencies"
-      placeholder="Type your competencies and press enter"
-    >
-    </ng-select>
-    <div formArrayName="work">
-      <div *ngFor="let work of getResumeWorkFormArrayControls(resumeForm); let i = index">
+    <div class="group">
+      <p class="h4">Personal Profile</p>
+      <textarea formControlName="profile" placeholder="Tell us more about yourself..."></textarea>
+    </div>
+    <div class="group">
+      <p class="h4">Core Competencies</p>
+      <ng-select
+        [multiple]="true"
+        [addTag]="true"
+        [isOpen]="false"
+        [selectOnTab]="true"
+        formControlName="competencies"
+        placeholder="Type your competencies and press enter"
+      >
+      </ng-select>
+    </div>
+    <div class="group" formArrayName="work">
+      <p class="h4">Work Experience</p>
+      <div
+        class="sub-group"
+        *ngFor="let work of getResumeWorkFormArrayControls(resumeForm); let i = index"
+      >
+        <button
+          class="btn-remove delete-work"
+          *ngIf="i > 0"
+          (click)="removeWorkFromFormArrayByIndex(resumeForm, i)"
+        >
+          <span>×</span>
+        </button>
         <div [formGroupName]="i">
           <div class="row no-gutters">
-            <div class="col-6">
+            <div class="col-6 px-1">
               <input type="text" formControlName="company" placeholder="Company name" />
             </div>
-            <div class="col-6">
+            <div class="col-6 px-1">
               <input type="text" formControlName="location" placeholder="Location" />
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-6" formArrayName="designations">
+            <div class="col-6 px-1" formArrayName="designations">
               <div
                 *ngFor="
                   let designations of getWorkDesignationFormArrayControls(work);
@@ -50,10 +100,10 @@
               <div *ngFor="let period of getWorkPeriodsFormArrayControls(work); let i = index">
                 <div [formGroupName]="i">
                   <div class="row no-gutters">
-                    <div class="col-6">
+                    <div class="col-6 px-1">
                       <input type="text" formControlName="start" placeholder="From" />
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 px-1">
                       <input type="text" formControlName="end" placeholder="To" />
                     </div>
                   </div>
@@ -63,29 +113,64 @@
           </div>
           <div formArrayName="descriptions">
             <div
-              class="row no-gutters"
+              class="row no-gutters px-1"
               *ngFor="let descriptions of getWorkDescriptionsFormArrayControls(work); let i = index"
             >
-              <input type="text" [formControlName]="i" placeholder="Description" />
+              <div class="col">
+                <input type="text" [formControlName]="i" placeholder="Description" />
+              </div>
+              <div class="col-1" style="max-width: 20px">
+                <button
+                  class="btn-remove delete-description"
+                  *ngIf="i > 0"
+                  (click)="removeWorkDescriptionFromFormArray(work, i)"
+                >
+                  <span>×</span>
+                </button>
+              </div>
+            </div>
+            <div class="mt-2 text-center">
+              <button
+                class="btn secondary add-description"
+                (click)="addWorkDescriptionToFormArray(work)"
+              >
+                <span>+ Description</span>
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <div class="text-center">
+        <button class="btn secondary add-work" (click)="addWorkToFormArray(resumeForm)">
+          <span>+ Work Experience</span>
+        </button>
+      </div>
     </div>
-    <div formArrayName="education">
-      <div *ngFor="let education of getResumeEducationFormArrayControls(resumeForm); let i = index">
+    <div class="group" formArrayName="education">
+      <p class="h4">Education</p>
+      <div
+        class="sub-group"
+        *ngFor="let education of getResumeEducationFormArrayControls(resumeForm); let i = index"
+      >
+        <button
+          class="btn-remove delete-education"
+          *ngIf="i > 0"
+          (click)="removeEducationFromFormArrayByIndex(resumeForm, i)"
+        >
+          <span>×</span>
+        </button>
         <div [formGroupName]="i">
           <div class="row no-gutters">
-            <div class="col-6">
+            <div class="col-6 px-1">
               <input type="text" formControlName="institution" placeholder="Institution name" />
             </div>
             <div class="col-6">
               <div formGroupName="period">
                 <div class="row no-gutters">
-                  <div class="col-6">
+                  <div class="col-6 px-1">
                     <input type="text" formControlName="start" placeholder="From" />
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 px-1">
                     <input type="text" formControlName="end" placeholder="To" />
                   </div>
                 </div>
@@ -93,7 +178,7 @@
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-6" formArrayName="qualification">
+            <div class="col-6 px-1" formArrayName="qualification">
               <div
                 class="row no-gutters"
                 *ngFor="
@@ -104,30 +189,52 @@
                 <input type="text" [formControlName]="i" placeholder="Qualification" />
               </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 px-1">
               <input type="text" formControlName="honorsAndGrade" placeholder="Honors and grade" />
             </div>
           </div>
         </div>
       </div>
+      <div class="text-center">
+        <button class="btn secondary add-education" (click)="addEducationToFormArray(resumeForm)">
+          <span>+ Education</span>
+        </button>
+      </div>
     </div>
-    <div formArrayName="awardsAndCertifications">
+    <div class="group" formArrayName="awardsAndCertifications">
+      <p class="h4">Awards and Certifications</p>
       <div
+        class="sub-group"
         *ngFor="
           let education of getResumeAwardsAndCertificationsFormArrayControls(resumeForm);
           let i = index
         "
       >
+        <button
+          class="btn-remove delete-award-certification"
+          *ngIf="i > 0"
+          (click)="removeAwardsAndCertificationsFromFormArrayByIndex(resumeForm, i)"
+        >
+          <span>×</span>
+        </button>
         <div [formGroupName]="i">
           <div class="row no-gutters">
-            <div class="col-6">
+            <div class="col-9 px-1">
               <input type="text" formControlName="name" placeholder="Award or certification name" />
             </div>
-            <div class="col-6">
+            <div class="col-3 px-1">
               <input type="text" formControlName="acquiredDate" placeholder="Acquired date" />
             </div>
           </div>
         </div>
+      </div>
+      <div class="text-center">
+        <button
+          class="btn secondary add-award-certification"
+          (click)="addAwardsAndCertificationsToFormArray(resumeForm)"
+        >
+          <span>+ Award or Certification</span>
+        </button>
       </div>
     </div>
   </form>

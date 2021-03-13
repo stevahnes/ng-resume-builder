@@ -21,3 +21,27 @@
     max-width: 800px;
   }
 }
+
+button.btn {
+  min-width: 180px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin: 0px 8px;
+  &.primary {
+    color: #fff;
+    border: none;
+    background-color: #007bff;
+  }
+  &.secondary {
+    color: #007bff;
+    border: solid 1px #007bff;
+    background-color: #ffffff;
+  }
+  &:disabled {
+    color: #808080;
+    border: solid 1px #808080;
+    background-color: #c7c7c7;
+    cursor: not-allowed;
+  }
+}
