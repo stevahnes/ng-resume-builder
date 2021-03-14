@@ -1,38 +1,62 @@
-<div class="row no-gutters">
-  <div class="column file-zone" appFileDrop (fileDropped)="onFileDropped($event)">
-    <input type="file" #file id="file" id (change)="onFileAdded($event)" />
-    <ng-container *ngIf="!uploadedFileName; else fileUploaded">
-      <img src="../../../assets/upload.svg" alt="upload files icon" />
-      <h3>Drag and drop file here</h3>
-      <h4>or</h4>
-      <label for="file">
-        <button class="primary browse-file" (click)="file.click()">Browse for file</button>
-      </label>
-    </ng-container>
-    <ng-template #fileUploaded>
-      <img src="../../../assets/file.svg" alt="uploaded file icon" />
-      <h3>{{ uploadedFileName }}</h3>
-      <h4>
-        <span [ngClass]="{ error: parseError }" *ngIf="parseError; else noError">
-          Please upload a valid JSON file.
-        </span>
-        <ng-template #noError>
-          <span [ngClass]="{ warning: processingFile }" *ngIf="processingFile; else allOK">
-            Processing uploaded file ...
+<div class="row no-gutters container">
+  <div class="column center-items">
+    <div
+      class="content file-zone"
+      *ngIf="!displayFormEditor; else displayEditor"
+      appFileDrop
+      (fileDropped)="onFileDropped($event)"
+    >
+      <input type="file" #file id="file" id (change)="onFileAdded($event)" />
+      <ng-container *ngIf="!uploadedFileName; else fileUploaded">
+        <img src="../../../assets/upload.svg" alt="upload files icon" />
+        <h3>Drag and drop file here</h3>
+        <h4>or</h4>
+        <button class="btn secondary create-new" (click)="applyCreateFromScratch()">
+          Create from scratch
+        </button>
+        <label for="file">
+          <button class="btn primary browse-file" (click)="file.click()">Browse for file</button>
+        </label>
+      </ng-container>
+      <ng-template #fileUploaded>
+        <img src="../../../assets/file.svg" alt="uploaded file icon" />
+        <h3>{{ uploadedFileName }}</h3>
+        <h4>
+          <span [ngClass]="{ error: parseError }" *ngIf="parseError; else noError">
+            Please upload a valid JSON file.
           </span>
-          <ng-template #allOK>&nbsp;</ng-template>
-        </ng-template>
-      </h4>
-      <label for="file">
-        <button class="secondary change-file" (click)="file.click()">Change file</button>
-      </label>
-      <button
-        class="primary generate-pdf"
-        (click)="generatePDF()"
-        [disabled]="parseError || processingFile"
-      >
-        Generate PDF
-      </button>
+          <ng-template #noError>
+            <span [ngClass]="{ warning: processingFile }" *ngIf="processingFile; else allOK">
+              Processing uploaded file ...
+            </span>
+            <ng-template #allOK>&nbsp;</ng-template>
+          </ng-template>
+        </h4>
+        <button class="btn secondary create-new" (click)="applyCreateFromScratch()">
+          Create from scratch
+        </button>
+        <label for="file">
+          <button class="btn primary change-file" (click)="file.click()">Change file</button>
+        </label>
+      </ng-template>
+    </div>
+    <ng-template #displayEditor>
+      <div class="mb-5">
+        <button class="btn secondary back-home" (click)="setDisplayFormEditor(false)">
+          Back to Home
+        </button>
+      </div>
+      <app-editor [resumeForm]="resumeForm"></app-editor>
+      <div class="mt-5">
+        <button class="btn secondary save-resume" (click)="save()">Save</button>
+        <button
+          class="btn primary generate-pdf"
+          (click)="generatePDF()"
+          [disabled]="parseError || processingFile || resumeForm.invalid"
+        >
+          Generate PDF
+        </button>
+      </div>
     </ng-template>
   </div>
 </div>

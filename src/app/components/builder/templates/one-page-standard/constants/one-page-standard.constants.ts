@@ -1,5 +1,3 @@
-import jsPDF from 'jspdf';
-import { Cursor } from '../../../class';
 import { FormatParameters, Standard } from '../../../models';
 
 export const A4Parameters: FormatParameters = {
@@ -18,14 +16,6 @@ export const OnePageStandard: Standard = {
   SECTION_FONT_SIZE: 12,
   TEXT_FONT_SIZE: 10
 };
-
-export const onePagePDF = new jsPDF(
-  OnePageStandard.ORIENTATION,
-  OnePageStandard.UNIT,
-  OnePageStandard.FORMAT
-);
-
-export const onePageCursor = new Cursor(0, 0, OnePageStandard.HEADER_FONT_SIZE);
 
 export const SECTION_LINE_WIDTH = 0.5;
 
