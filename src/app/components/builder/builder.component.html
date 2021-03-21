@@ -1,7 +1,7 @@
 <div class="row no-gutters container">
   <div class="column center-items">
     <div
-      class="content file-zone"
+      class="content file-zone text-center"
       *ngIf="!displayFormEditor; else displayEditor"
       appFileDrop
       (fileDropped)="onFileDropped($event)"
@@ -47,7 +47,7 @@
         </button>
       </div>
       <app-editor [resumeForm]="resumeForm"></app-editor>
-      <div class="mt-5">
+      <div class="mt-5 text-center">
         <button class="btn secondary save-resume" (click)="save()">Save</button>
         <button
           class="btn primary generate-pdf"

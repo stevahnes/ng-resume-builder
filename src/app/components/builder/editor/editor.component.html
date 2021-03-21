@@ -1,15 +1,35 @@
 <div class="content">
+  <div class="text-center py-2">
+    <small>(*) denotes mandatory fields</small>
+  </div>
   <form [formGroup]="resumeForm">
     <div [formGroup]="getResumeHeaderFormGroup(resumeForm)">
       <div class="group">
-        <input class="h3 text-center" type="text" formControlName="name" placeholder="Full Name" />
+        <input
+          class="h3 text-center"
+          [ngClass]="{
+            'is-invalid':
+              getResumeHeaderFormGroup(resumeForm).controls['name'].invalid &&
+              getResumeHeaderFormGroup(resumeForm).controls['name'].touched &&
+              !getResumeHeaderFormGroup(resumeForm).controls['name'].pristine
+          }"
+          type="text"
+          formControlName="name"
+          placeholder="* Full Name"
+        />
       </div>
       <div class="group">
         <input
           class="h4 text-center"
+          [ngClass]="{
+            'is-invalid':
+              getResumeHeaderFormGroup(resumeForm).controls['subtitle'].invalid &&
+              getResumeHeaderFormGroup(resumeForm).controls['subtitle'].touched &&
+              !getResumeHeaderFormGroup(resumeForm).controls['subtitle'].pristine
+          }"
           type="text"
           formControlName="subtitle"
-          placeholder="Titles and Credentials"
+          placeholder="* Titles and Credentials"
         />
       </div>
       <div class="group row no-gutters">
@@ -24,17 +44,29 @@
         <div class="col-3 px-1">
           <input
             class="text-center"
+            [ngClass]="{
+              'is-invalid':
+                getResumeHeaderFormGroup(resumeForm).controls['email'].invalid &&
+                getResumeHeaderFormGroup(resumeForm).controls['email'].touched &&
+                !getResumeHeaderFormGroup(resumeForm).controls['email'].pristine
+            }"
             type="text"
             formControlName="email"
-            placeholder="Email address"
+            placeholder="* Email address"
           />
         </div>
         <div class="col-3 px-1">
           <input
             class="text-center"
+            [ngClass]="{
+              'is-invalid':
+                getResumeHeaderFormGroup(resumeForm).controls['phone'].invalid &&
+                getResumeHeaderFormGroup(resumeForm).controls['phone'].touched &&
+                !getResumeHeaderFormGroup(resumeForm).controls['phone'].pristine
+            }"
             type="text"
             formControlName="phone"
-            placeholder="Phone number"
+            placeholder="* Phone number"
           />
         </div>
         <div class="col-3 px-1">
@@ -49,7 +81,16 @@
     </div>
     <div class="group">
       <p class="h4">Personal Profile</p>
-      <textarea formControlName="profile" placeholder="Tell us more about yourself..."></textarea>
+      <textarea
+        [ngClass]="{
+          'is-invalid':
+            resumeForm.controls['profile'].invalid &&
+            resumeForm.controls['profile'].touched &&
+            !resumeForm.controls['profile'].pristine
+        }"
+        formControlName="profile"
+        placeholder="* Tell us more about yourself..."
+      ></textarea>
     </div>
     <div class="group">
       <p class="h4">Core Competencies</p>
@@ -58,8 +99,14 @@
         [addTag]="true"
         [isOpen]="false"
         [selectOnTab]="true"
+        [ngClass]="{
+          'is-invalid':
+            resumeForm.controls['competencies'].invalid &&
+            resumeForm.controls['competencies'].touched &&
+            !resumeForm.controls['competencies'].pristine
+        }"
         formControlName="competencies"
-        placeholder="Type your competencies and press enter"
+        placeholder="* Type your competencies and press enter"
       >
       </ng-select>
     </div>
@@ -67,6 +114,7 @@
       <p class="h4">Work Experience</p>
       <div
         class="sub-group"
+        [ngClass]="{ 'is-invalid': work.invalid && work.touched && !work.pristine }"
         *ngFor="let work of getResumeWorkFormArrayControls(resumeForm); let i = index"
       >
         <button
@@ -79,10 +127,18 @@
         <div [formGroupName]="i">
           <div class="row no-gutters">
             <div class="col-6 px-1">
-              <input type="text" formControlName="company" placeholder="Company name" />
+              <input
+                type="text"
+                formControlName="company"
+                [placeholder]="i < 1 ? '* Company name' : 'Company name'"
+              />
             </div>
             <div class="col-6 px-1">
-              <input type="text" formControlName="location" placeholder="Location" />
+              <input
+                type="text"
+                formControlName="location"
+                [placeholder]="i < 1 ? '* Location' : 'Location'"
+              />
             </div>
           </div>
           <div class="row no-gutters">
@@ -90,21 +146,33 @@
               <div
                 *ngFor="
                   let designations of getWorkDesignationFormArrayControls(work);
-                  let i = index
+                  let j = index
                 "
               >
-                <input type="text" [formControlName]="i" placeholder="Designation" />
+                <input
+                  type="text"
+                  [formControlName]="j"
+                  [placeholder]="i < 1 ? '* Designation' : 'Designation'"
+                />
               </div>
             </div>
             <div class="col-6" formArrayName="periods">
-              <div *ngFor="let period of getWorkPeriodsFormArrayControls(work); let i = index">
-                <div [formGroupName]="i">
+              <div *ngFor="let period of getWorkPeriodsFormArrayControls(work); let k = index">
+                <div [formGroupName]="k">
                   <div class="row no-gutters">
                     <div class="col-6 px-1">
-                      <input type="text" formControlName="start" placeholder="From" />
+                      <input
+                        type="text"
+                        formControlName="start"
+                        [placeholder]="i < 1 ? '* From' : 'From'"
+                      />
                     </div>
                     <div class="col-6 px-1">
-                      <input type="text" formControlName="end" placeholder="To" />
+                      <input
+                        type="text"
+                        formControlName="end"
+                        [placeholder]="i < 1 ? '* To' : 'To'"
+                      />
                     </div>
                   </div>
                 </div>
@@ -114,16 +182,20 @@
           <div formArrayName="descriptions">
             <div
               class="row no-gutters px-1"
-              *ngFor="let descriptions of getWorkDescriptionsFormArrayControls(work); let i = index"
+              *ngFor="let description of getWorkDescriptionsFormArrayControls(work); let l = index"
             >
               <div class="col">
-                <input type="text" [formControlName]="i" placeholder="Description" />
+                <input
+                  type="text"
+                  [formControlName]="l"
+                  [placeholder]="i < 1 && l < 1 ? '* Description' : 'Description'"
+                />
               </div>
               <div class="col-1" style="max-width: 20px">
                 <button
                   class="btn-remove delete-description"
-                  *ngIf="i > 0"
-                  (click)="removeWorkDescriptionFromFormArray(work, i)"
+                  *ngIf="l > 0"
+                  (click)="removeWorkDescriptionFromFormArray(work, l)"
                 >
                   <span>×</span>
                 </button>
@@ -150,6 +222,7 @@
       <p class="h4">Education</p>
       <div
         class="sub-group"
+        [ngClass]="{ 'is-invalid': education.invalid && education.touched && !education.pristine }"
         *ngFor="let education of getResumeEducationFormArrayControls(resumeForm); let i = index"
       >
         <button
@@ -162,16 +235,28 @@
         <div [formGroupName]="i">
           <div class="row no-gutters">
             <div class="col-6 px-1">
-              <input type="text" formControlName="institution" placeholder="Institution name" />
+              <input
+                type="text"
+                formControlName="institution"
+                [placeholder]="i < 1 ? '* Institution name' : 'Institution name'"
+              />
             </div>
             <div class="col-6">
               <div formGroupName="period">
                 <div class="row no-gutters">
                   <div class="col-6 px-1">
-                    <input type="text" formControlName="start" placeholder="From" />
+                    <input
+                      type="text"
+                      formControlName="start"
+                      [placeholder]="i < 1 ? '* From' : 'From'"
+                    />
                   </div>
                   <div class="col-6 px-1">
-                    <input type="text" formControlName="end" placeholder="To" />
+                    <input
+                      type="text"
+                      formControlName="end"
+                      [placeholder]="i < 1 ? '* To' : 'To'"
+                    />
                   </div>
                 </div>
               </div>
@@ -183,14 +268,22 @@
                 class="row no-gutters"
                 *ngFor="
                   let qualification of getEducationQualificationFormArrayControls(education);
-                  let i = index
+                  let j = index
                 "
               >
-                <input type="text" [formControlName]="i" placeholder="Qualification" />
+                <input
+                  type="text"
+                  [formControlName]="j"
+                  [placeholder]="i < 1 ? '* Qualification' : 'Qualification'"
+                />
               </div>
             </div>
             <div class="col-6 px-1">
-              <input type="text" formControlName="honorsAndGrade" placeholder="Honors and grade" />
+              <input
+                type="text"
+                formControlName="honorsAndGrade"
+                [placeholder]="i < 1 ? '* Honors and grade' : 'Honors and grade'"
+              />
             </div>
           </div>
         </div>
@@ -205,8 +298,14 @@
       <p class="h4">Awards and Certifications</p>
       <div
         class="sub-group"
+        [ngClass]="{
+          'is-invalid':
+            awardOrCertification.invalid &&
+            awardOrCertification.touched &&
+            !awardOrCertification.pristine
+        }"
         *ngFor="
-          let education of getResumeAwardsAndCertificationsFormArrayControls(resumeForm);
+          let awardOrCertification of getResumeAwardsAndCertificationsFormArrayControls(resumeForm);
           let i = index
         "
       >
@@ -220,10 +319,20 @@
         <div [formGroupName]="i">
           <div class="row no-gutters">
             <div class="col-9 px-1">
-              <input type="text" formControlName="name" placeholder="Award or certification name" />
+              <input
+                type="text"
+                formControlName="name"
+                [placeholder]="
+                  i < 1 ? '* Award or certification name' : 'Award or certification name'
+                "
+              />
             </div>
             <div class="col-3 px-1">
-              <input type="text" formControlName="acquiredDate" placeholder="Acquired date" />
+              <input
+                type="text"
+                formControlName="acquiredDate"
+                [placeholder]="i < 1 ? '* Acquired date' : 'Acquired date'"
+              />
             </div>
           </div>
         </div>
