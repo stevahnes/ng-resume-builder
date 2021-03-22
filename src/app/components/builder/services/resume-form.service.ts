@@ -18,7 +18,7 @@ export class ResumeFormService {
     if (loadData) {
       return this.formBuilder.group({
         header: this.buildHeaderForm(),
-        profile: ['', [Validators.required, Validators.maxLength(5000)]],
+        profile: ['', [Validators.required]],
         competencies: [[], [Validators.required]],
         work: this.formBuilder.array([]),
         education: this.formBuilder.array([]),
@@ -41,8 +41,8 @@ export class ResumeFormService {
       subtitle: ['', [Validators.required]],
       email: ['', [Validators.required]],
       phone: ['', [Validators.required]],
-      leftDetail: ['', [Validators.required]],
-      rightDetail: ['', [Validators.required]]
+      leftDetail: [''],
+      rightDetail: ['']
     });
   }
 

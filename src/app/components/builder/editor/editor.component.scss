@@ -44,6 +44,16 @@ ng-select {
       display: none;
     }
   }
+  &.is-invalid {
+    ::ng-deep {
+      .ng-select-container {
+        border-color: #dc3545 !important;
+        .ng-placeholder {
+          color: #dc3545 !important;
+        }
+      }
+    }
+  }
 }
 
 button {
@@ -62,5 +72,23 @@ button {
         color: #dc3545;
       }
     }
+  }
+}
+
+.is-invalid {
+  color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #e04958 !important;
+    opacity: 1; /* Firefox */
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #e04958 !important;
+  }
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #e04958 !important;
   }
 }

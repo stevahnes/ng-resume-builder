@@ -27,7 +27,13 @@ export function constructHeader(
   /** Construct Additional Details */
   cursor.setSize(standard.TEXT_FONT_SIZE);
   updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.REGULAR, cursor.getSize());
-  const contactInformation = `${header.leftDetail} | ${header.email} | ${header.phone} | ${header.rightDetail}`;
+  let contactInformation = `${header.email} | ${header.phone}`;
+  if (header.leftDetail) {
+    contactInformation = `${header.leftDetail} | ${contactInformation}`;
+  }
+  if (header.rightDetail) {
+    contactInformation = `${contactInformation} | ${header.rightDetail}`;
+  }
   writeCenter(jsPDFInstance, contactInformation, cursor);
   enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
 }
