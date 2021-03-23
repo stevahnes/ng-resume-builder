@@ -129,6 +129,12 @@
             <div class="col-6 px-1">
               <input
                 type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    getChildFormControl(work, 'company').invalid &&
+                    getChildFormControl(work, 'company').touched &&
+                    !getChildFormControl(work, 'company').pristine
+                }"
                 formControlName="company"
                 [placeholder]="i < 1 ? '* Company name' : 'Company name'"
               />
@@ -136,6 +142,12 @@
             <div class="col-6 px-1">
               <input
                 type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    getChildFormControl(work, 'location').invalid &&
+                    getChildFormControl(work, 'location').touched &&
+                    !getChildFormControl(work, 'location').pristine
+                }"
                 formControlName="location"
                 [placeholder]="i < 1 ? '* Location' : 'Location'"
               />
@@ -144,13 +156,14 @@
           <div class="row no-gutters">
             <div class="col-6 px-1" formArrayName="designations">
               <div
-                *ngFor="
-                  let designations of getWorkDesignationFormArrayControls(work);
-                  let j = index
-                "
+                *ngFor="let designation of getWorkDesignationFormArrayControls(work); let j = index"
               >
                 <input
                   type="text"
+                  [ngClass]="{
+                    'is-invalid':
+                      designation.invalid && designation.touched && !designation.pristine
+                  }"
                   [formControlName]="j"
                   [placeholder]="i < 1 ? '* Designation' : 'Designation'"
                 />
@@ -163,16 +176,18 @@
                     <div class="col-6 px-1">
                       <input
                         type="text"
+                        [ngClass]="{
+                          'is-invalid':
+                            getChildFormControl(period, 'start').invalid &&
+                            getChildFormControl(period, 'start').touched &&
+                            !getChildFormControl(period, 'start').pristine
+                        }"
                         formControlName="start"
                         [placeholder]="i < 1 ? '* From' : 'From'"
                       />
                     </div>
                     <div class="col-6 px-1">
-                      <input
-                        type="text"
-                        formControlName="end"
-                        [placeholder]="i < 1 ? '* To' : 'To'"
-                      />
+                      <input type="text" formControlName="end" placeholder="To" />
                     </div>
                   </div>
                 </div>
@@ -187,6 +202,10 @@
               <div class="col">
                 <input
                   type="text"
+                  [ngClass]="{
+                    'is-invalid':
+                      description.invalid && description.touched && !description.pristine
+                  }"
                   [formControlName]="l"
                   [placeholder]="i < 1 && l < 1 ? '* Description' : 'Description'"
                 />
@@ -237,6 +256,12 @@
             <div class="col-6 px-1">
               <input
                 type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    getChildFormControl(education, 'institution').invalid &&
+                    getChildFormControl(education, 'institution').touched &&
+                    !getChildFormControl(education, 'institution').pristine
+                }"
                 formControlName="institution"
                 [placeholder]="i < 1 ? '* Institution name' : 'Institution name'"
               />
@@ -247,16 +272,18 @@
                   <div class="col-6 px-1">
                     <input
                       type="text"
+                      [ngClass]="{
+                        'is-invalid':
+                          getChildFormControl(education, 'period.start').invalid &&
+                          getChildFormControl(education, 'period.start').touched &&
+                          !getChildFormControl(education, 'period.start').pristine
+                      }"
                       formControlName="start"
                       [placeholder]="i < 1 ? '* From' : 'From'"
                     />
                   </div>
                   <div class="col-6 px-1">
-                    <input
-                      type="text"
-                      formControlName="end"
-                      [placeholder]="i < 1 ? '* To' : 'To'"
-                    />
+                    <input type="text" formControlName="end" placeholder="To" />
                   </div>
                 </div>
               </div>
@@ -273,17 +300,17 @@
               >
                 <input
                   type="text"
+                  [ngClass]="{
+                    'is-invalid':
+                      qualification.invalid && qualification.touched && !qualification.pristine
+                  }"
                   [formControlName]="j"
                   [placeholder]="i < 1 ? '* Qualification' : 'Qualification'"
                 />
               </div>
             </div>
             <div class="col-6 px-1">
-              <input
-                type="text"
-                formControlName="honorsAndGrade"
-                [placeholder]="i < 1 ? '* Honors and grade' : 'Honors and grade'"
-              />
+              <input type="text" formControlName="honorsAndGrade" placeholder="Honors and grade" />
             </div>
           </div>
         </div>
@@ -321,6 +348,12 @@
             <div class="col-9 px-1">
               <input
                 type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    getChildFormControl(awardOrCertification, 'name').invalid &&
+                    getChildFormControl(awardOrCertification, 'name').touched &&
+                    !getChildFormControl(awardOrCertification, 'name').pristine
+                }"
                 formControlName="name"
                 [placeholder]="
                   i < 1 ? '* Award or certification name' : 'Award or certification name'
@@ -330,6 +363,12 @@
             <div class="col-3 px-1">
               <input
                 type="text"
+                [ngClass]="{
+                  'is-invalid':
+                    getChildFormControl(awardOrCertification, 'acquiredDate').invalid &&
+                    getChildFormControl(awardOrCertification, 'acquiredDate').touched &&
+                    !getChildFormControl(awardOrCertification, 'acquiredDate').pristine
+                }"
                 formControlName="acquiredDate"
                 [placeholder]="i < 1 ? '* Acquired date' : 'Acquired date'"
               />

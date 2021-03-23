@@ -102,4 +102,8 @@ export class EditorComponent implements OnInit {
   getEducationQualificationFormArrayControls(educationForm: AbstractControl): AbstractControl[] {
     return this.formService.getEducationQualificationFormArray(educationForm).controls;
   }
+
+  getChildFormControl(parent: AbstractControl, childControlName: string): AbstractControl {
+    return parent.get(childControlName) as AbstractControl;
+  }
 }

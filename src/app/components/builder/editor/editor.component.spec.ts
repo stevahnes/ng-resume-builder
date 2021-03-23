@@ -117,4 +117,13 @@ describe('EditorComponent', () => {
     fixture.detectChanges();
     expect(awardOrCertificationFormArrayControls.length).toEqual(1);
   });
+
+  it('should try to get child form control and return fake object if fails', () => {
+    const awardOrCertificationFormArrayControls: AbstractControl[] = component.getResumeAwardsAndCertificationsFormArrayControls(
+      component.resumeForm
+    );
+    expect(
+      component.getChildFormControl(awardOrCertificationFormArrayControls[0], 'acquiredDate')
+    ).toEqual(awardOrCertificationFormArrayControls[0].get('acquiredDate') as AbstractControl);
+  });
 });
