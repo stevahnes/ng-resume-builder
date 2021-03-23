@@ -1,0 +1,9 @@
+export const APP_TITLE = 'NgResume';
+export const META_DESCRIPTION = `${APP_TITLE} is an automatic and open-source resume generator. It was born out of the frustration from having to meddle with document editors whenever it is time to update our resume.`;
+export const META_KEYWORDS = 'angular,app,netlify,travis-ci,typescript,resume,generator';
+export const META_LOGO_RELATIVE_PATH = '/assets/logo.svg';
+export const META_LOGO_ALTERNATE_TEXT = `${APP_TITLE} Logo`;
+export const META_ROBOTS = 'index, follow';
+export const META_LANGUAGE = 'en_US';
+export const META_LOGO_WIDTH = '2560';
+export const META_LOGO_HEIGHT = '2560';
