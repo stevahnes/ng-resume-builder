@@ -11,7 +11,7 @@ import {
   UNDEFINED_PERIOD_END
 } from '../../constants/one-page-standard.constants';
 import { SAMPLE_RESUME } from '../../constants/sample-resume.constants.spec';
-import { startCase, trimEnd, upperCase, upperFirst } from 'lodash';
+import { startCase, toUpper, trimEnd, upperFirst } from 'lodash';
 import { constructWorkExperienceContent } from './work-experience.content.logic';
 
 describe('Work', () => {
@@ -50,7 +50,7 @@ describe('Work', () => {
       expect(setCursorXCoordinateSpy.calls.all()[setCursorXPointer + 1].args[0]).toEqual(
         A4Parameters.PORTRAIT_WIDTH - OnePageStandard.MARGIN
       );
-      expect(textSpy.calls.all()[textPointer].args[0]).toEqual(upperCase(resume.work[i].company));
+      expect(textSpy.calls.all()[textPointer].args[0]).toEqual(toUpper(resume.work[i].company));
       expect(textSpy.calls.all()[textPointer + 1].args[0]).toEqual(resume.work[i].location);
       expect(incrementYCoordinateSpy.calls.all()[incrementYPointer].args[0]).toEqual(
         DEFAULT_LINE_HEIGHT * (cursor.getSize() * POINT_TO_MM)

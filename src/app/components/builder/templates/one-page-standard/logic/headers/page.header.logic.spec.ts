@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { cloneDeep, upperCase } from 'lodash';
+import { cloneDeep, toUpper } from 'lodash';
 import { POINT_TO_MM } from '../../../../constants';
 import { Cursor } from '../../../../class';
 import {
@@ -33,7 +33,7 @@ describe('PageHeader', () => {
       OnePageStandard.MARGIN
     );
     expect(textSpy).toHaveBeenCalledTimes(3);
-    expect(textSpy.calls.all()[0].args[0]).toEqual(upperCase(resume.header.name));
+    expect(textSpy.calls.all()[0].args[0]).toEqual(toUpper(resume.header.name));
     expect(textSpy.calls.all()[1].args[0]).toEqual(resume.header.subtitle);
     expect(textSpy.calls.all()[2].args[0]).toEqual(
       `${resume.header.leftDetail} | ${resume.header.email} | ${resume.header.phone} | ${resume.header.rightDetail}`
@@ -80,7 +80,7 @@ describe('PageHeader', () => {
       OnePageStandard.MARGIN
     );
     expect(textSpy).toHaveBeenCalledTimes(3);
-    expect(textSpy.calls.all()[0].args[0]).toEqual(upperCase(resume.header.name));
+    expect(textSpy.calls.all()[0].args[0]).toEqual(toUpper(resume.header.name));
     expect(textSpy.calls.all()[1].args[0]).toEqual(resume.header.subtitle);
     expect(textSpy.calls.all()[2].args[0]).toEqual(
       `${resume.header.email} | ${resume.header.phone}`

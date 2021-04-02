@@ -9,7 +9,7 @@ import {
   UNDEFINED_PERIOD_END
 } from '../../constants/one-page-standard.constants';
 import { SAMPLE_RESUME } from '../../constants/sample-resume.constants.spec';
-import { startCase, upperCase } from 'lodash';
+import { startCase, toUpper } from 'lodash';
 import { constructEducationContent } from './education.content.logic';
 
 describe('education', () => {
@@ -55,9 +55,7 @@ describe('education', () => {
       expect(setCursorXCoordinateSpy.calls.all()[i * 4 + 3].args[0]).toEqual(
         A4Parameters.PORTRAIT_WIDTH - OnePageStandard.MARGIN
       );
-      expect(textSpy.calls.all()[i * 4].args[0]).toEqual(
-        upperCase(resume.education[i].institution)
-      );
+      expect(textSpy.calls.all()[i * 4].args[0]).toEqual(toUpper(resume.education[i].institution));
       expect(textSpy.calls.all()[i * 4 + 1].args[0]).toEqual(
         `${startCase(resume.education[i].period.start)} – ${startCase(
           resume.education[i].period.end.length > 0

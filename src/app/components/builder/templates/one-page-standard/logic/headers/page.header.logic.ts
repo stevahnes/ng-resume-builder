@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { upperCase } from 'lodash';
+import { toUpper } from 'lodash';
 import { FormatParameters, Header, Standard } from '../../../../models';
 import { Cursor } from '../../../../class';
 import { enterAndCheckMargin, FontStyle, updateFontAndSize, writeCenter } from '../../../../utils';
@@ -16,7 +16,7 @@ export function constructHeader(
   cursor.setSize(standard.HEADER_FONT_SIZE);
   updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
   cursor.setCoordinates(pageParameters.PORTRAIT_WIDTH / 2, standard.MARGIN);
-  writeCenter(jsPDFInstance, upperCase(header.name), cursor);
+  writeCenter(jsPDFInstance, toUpper(header.name), cursor);
   enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
 
   /** Construct Subtitle */

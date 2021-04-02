@@ -12,7 +12,7 @@ import {
   DEFAULT_LINE_HEIGHT,
   UNDEFINED_PERIOD_END
 } from '../../constants/one-page-standard.constants';
-import { startCase, upperCase } from 'lodash';
+import { startCase, toUpper } from 'lodash';
 
 export function constructEducationContent(
   educations: Education[],
@@ -25,7 +25,7 @@ export function constructEducationContent(
   educations.forEach((education) => {
     updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
     cursor.setXCoordinate(standard.MARGIN);
-    writeLeft(jsPDFInstance, upperCase(education.institution), cursor);
+    writeLeft(jsPDFInstance, toUpper(education.institution), cursor);
     cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);
     const educationPeriodText = `${startCase(education.period.start)} – ${startCase(
       education.period.end.length > 0 ? education.period.end : UNDEFINED_PERIOD_END

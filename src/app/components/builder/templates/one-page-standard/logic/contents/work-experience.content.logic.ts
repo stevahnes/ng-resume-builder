@@ -15,7 +15,7 @@ import {
   DEFAULT_LINE_HEIGHT,
   UNDEFINED_PERIOD_END
 } from '../../constants/one-page-standard.constants';
-import { startCase, trimEnd, upperCase, upperFirst } from 'lodash';
+import { startCase, toUpper, trimEnd, upperFirst } from 'lodash';
 
 export function constructWorkExperienceContent(
   works: Work[],
@@ -28,7 +28,7 @@ export function constructWorkExperienceContent(
   works.forEach((work, index) => {
     updateFontAndSize(jsPDFInstance, standard.FONT_NAME, FontStyle.BOLD, cursor.getSize());
     cursor.setXCoordinate(standard.MARGIN);
-    writeLeft(jsPDFInstance, upperCase(work.company), cursor);
+    writeLeft(jsPDFInstance, toUpper(work.company), cursor);
     cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);
     writeRight(jsPDFInstance, startCase(work.location), cursor);
     enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
