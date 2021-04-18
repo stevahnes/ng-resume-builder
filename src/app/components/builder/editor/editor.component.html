@@ -165,7 +165,7 @@
                       designation.invalid && designation.touched && !designation.pristine
                   }"
                   [formControlName]="j"
-                  [placeholder]="i < 1 ? '* Designation' : 'Designation'"
+                  [placeholder]="j < 1 ? '* Designation' : 'Designation'"
                 />
               </div>
             </div>
@@ -173,26 +173,47 @@
               <div *ngFor="let period of getWorkPeriodsFormArrayControls(work); let k = index">
                 <div [formGroupName]="k">
                   <div class="row no-gutters">
-                    <div class="col-6 px-1">
-                      <input
-                        type="text"
-                        [ngClass]="{
-                          'is-invalid':
-                            getChildFormControl(period, 'start').invalid &&
-                            getChildFormControl(period, 'start').touched &&
-                            !getChildFormControl(period, 'start').pristine
-                        }"
-                        formControlName="start"
-                        [placeholder]="i < 1 ? '* From' : 'From'"
-                      />
+                    <div class="col">
+                      <div class="row no-gutters">
+                        <div class="col-6 px-1">
+                          <input
+                            type="text"
+                            [ngClass]="{
+                              'is-invalid':
+                                getChildFormControl(period, 'start').invalid &&
+                                getChildFormControl(period, 'start').touched &&
+                                !getChildFormControl(period, 'start').pristine
+                            }"
+                            formControlName="start"
+                            [placeholder]="k < 1 ? '* From' : 'From'"
+                          />
+                        </div>
+                        <div class="col-6 px-1">
+                          <input type="text" formControlName="end" placeholder="To" />
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-6 px-1">
-                      <input type="text" formControlName="end" placeholder="To" />
+                    <div class="col-1" style="max-width: 20px">
+                      <button
+                        class="btn-remove delete-designation-period"
+                        *ngIf="k > 0"
+                        (click)="removeDesignationAndPeriodFromFormArrayByIndex(work, k)"
+                      >
+                        <span>×</span>
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="mt-2 text-center">
+            <button
+              class="btn secondary add-designation-period"
+              (click)="addDesignationAndPeriodToFormArray(work)"
+            >
+              <span>+ Designation</span>
+            </button>
           </div>
           <div formArrayName="descriptions">
             <div
@@ -298,15 +319,34 @@
                   let j = index
                 "
               >
-                <input
-                  type="text"
-                  [ngClass]="{
-                    'is-invalid':
-                      qualification.invalid && qualification.touched && !qualification.pristine
-                  }"
-                  [formControlName]="j"
-                  [placeholder]="i < 1 ? '* Qualification' : 'Qualification'"
-                />
+                <div class="col">
+                  <input
+                    type="text"
+                    [ngClass]="{
+                      'is-invalid':
+                        qualification.invalid && qualification.touched && !qualification.pristine
+                    }"
+                    [formControlName]="j"
+                    [placeholder]="j < 1 ? '* Qualification' : 'Qualification'"
+                  />
+                </div>
+                <div class="col-1" style="max-width: 20px">
+                  <button
+                    class="btn-remove delete-qualification"
+                    *ngIf="j > 0"
+                    (click)="removeQualificationFromFormArrayByIndex(education, j)"
+                  >
+                    <span>×</span>
+                  </button>
+                </div>
+              </div>
+              <div class="mt-2 text-center">
+                <button
+                  class="btn secondary add-qualification"
+                  (click)="addQualificationToFormArray(education)"
+                >
+                  <span>+ Qualification</span>
+                </button>
               </div>
             </div>
             <div class="col-6 px-1">

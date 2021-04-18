@@ -26,10 +26,29 @@ export class EditorComponent implements OnInit {
     this.formService.getResumeWorkFormArray(resumeForm).push(this.formService.buildWorkForm());
   }
 
+  addDesignationAndPeriodToFormArray(workForm: AbstractControl): void {
+    this.formService
+      .getWorkDesignationFormArray(workForm)
+      .push(this.formService.buildGenericControl(''));
+    this.formService.getWorkPeriodsFormArray(workForm).push(this.formService.buildPeriodForm());
+  }
+
   removeWorkFromFormArrayByIndex(resumeForm: AbstractControl, index: number): void {
     const formArray: FormArray = this.formService.getResumeWorkFormArray(resumeForm);
     if (formArray.controls.length > 1) {
       formArray.removeAt(index);
+    }
+  }
+
+  removeDesignationAndPeriodFromFormArrayByIndex(workForm: AbstractControl, index: number): void {
+    const formArrays: FormArray[] = [
+      this.formService.getWorkDesignationFormArray(workForm),
+      this.formService.getWorkPeriodsFormArray(workForm)
+    ];
+    for (const formArray of formArrays) {
+      if (formArray.controls.length > 1) {
+        formArray.removeAt(index);
+      }
     }
   }
 
@@ -43,8 +62,21 @@ export class EditorComponent implements OnInit {
       .push(this.formService.buildEducationForm());
   }
 
+  addQualificationToFormArray(educationForm: AbstractControl): void {
+    this.formService
+      .getEducationQualificationFormArray(educationForm)
+      .push(this.formService.buildGenericControl(''));
+  }
+
   removeEducationFromFormArrayByIndex(resumeForm: AbstractControl, index: number): void {
     const formArray: FormArray = this.formService.getResumeEducationFormArray(resumeForm);
+    if (formArray.controls.length > 1) {
+      formArray.removeAt(index);
+    }
+  }
+
+  removeQualificationFromFormArrayByIndex(educationForm: AbstractControl, index: number): void {
+    const formArray: FormArray = this.formService.getEducationQualificationFormArray(educationForm);
     if (formArray.controls.length > 1) {
       formArray.removeAt(index);
     }

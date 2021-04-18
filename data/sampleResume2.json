@@ -39,13 +39,13 @@
       "designations": [
         {
           "title": "System Analyst (Software Engineer)",
-          "start" : "April 2020",
+          "start": "April 2020",
           "end": "",
           "descriptions": []
         },
         {
           "title": "Amadeus IT Graduate (Technical Business Analyst)",
-          "start" : "July 2018",
+          "start": "July 2018",
           "end": "March 2020",
           "descriptions": []
         }
@@ -63,7 +63,7 @@
       "location": "Singapore",
       "designations": ["Software Engineer"],
       "start": "October 2017",
-      "end" : "June 2018",
+      "end": "June 2018",
       "descriptions": [
         "Implemented new features of a mobile application for human resource management in plain JavaScript.",
         "Designed various ways to improve application usability and reduce user input using InVision..",
@@ -74,7 +74,7 @@
       "company": "singapore university of technology and design",
       "location": "Singapore",
       "designations": ["Research Officer"],
-      "start": "October 2016", 
+      "start": "October 2016",
       "end": "September 2017",
       "descriptions": [
         "Published a novel open-loop control algorithm for improved locomotion of spherical rolling robots.",
@@ -87,14 +87,14 @@
     {
       "institution": "SINGAPORE UNIVERSITY OF TECHNOLOGY AND DESIGN",
       "qualification": ["Bachelor of Engineering (Product Development)"],
-      "start": "May 2013", 
+      "start": "May 2013",
       "end": "September 2016",
       "honorsAndGrade": "Summa Cum Laude, CGPA: 4.96/5.00"
     },
     {
       "institution": "catholic junior college",
       "qualification": ["Singapore-Cambridge GCE A-Level"],
-      "start": "January 2011", 
+      "start": "January 2011",
       "end": "December 2012",
       "honorsAndGrade": "H3 Essentials of Modern Physics, UAS: 90/90"
     }
