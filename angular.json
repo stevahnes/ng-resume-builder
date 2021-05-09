@@ -91,7 +91,7 @@
           },
           "configurations": {
             "ci": {
-              "browsers": "CustomChromeHeadless",
+              "browsers": "FirefoxHeadless",
               "codeCoverage": true,
               "progress": false,
               "watch": false

@@ -7,7 +7,7 @@ before_install:
   - pip install --user codecov
 script:
   - npm run ci
-after_sucess:
+after_success:
   - npm run report-coverage
 before_deploy:
   - npm install netlify-cli -g

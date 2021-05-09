@@ -2,13 +2,26 @@
 /* tslint:disable */
 export const VERSION = {
   dirty: true,
-  raw: '7170d2e-dirty',
-  hash: '7170d2e',
-  distance: null,
-  tag: null,
-  semver: null,
-  suffix: '7170d2e-dirty',
-  semverString: null,
-  version: '0.0.0'
+  raw: 'v1.14.0-2-g849d0b5-dirty',
+  hash: 'g849d0b5',
+  distance: 2,
+  tag: 'v1.14.0',
+  semver: {
+    options: {
+      loose: false,
+      includePrerelease: false
+    },
+    loose: false,
+    raw: 'v1.14.0',
+    major: 1,
+    minor: 14,
+    patch: 0,
+    prerelease: [],
+    build: [],
+    version: '1.14.0'
+  },
+  suffix: '2-g849d0b5-dirty',
+  semverString: '1.14.0+2.g849d0b5',
+  version: '1.14.0'
 };
 /* tslint:enable */
