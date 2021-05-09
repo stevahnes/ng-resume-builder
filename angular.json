@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["lodash", "file-saver", "raf"],
+            "allowedCommonJsDependencies": ["lodash", "file-saver", "raf", "git-describe", "path"],
             "outputPath": "dist/ng-resume-builder",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -91,7 +91,7 @@
           },
           "configurations": {
             "ci": {
-              "browsers": "CustomChromeHeadless",
+              "browsers": "FirefoxHeadless",
               "codeCoverage": true,
               "progress": false,
               "watch": false

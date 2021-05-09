@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { VERSION } from '../environments/version';
 import {
   APP_TITLE,
   META_DESCRIPTION,
@@ -22,6 +23,7 @@ import {
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = APP_TITLE;
+  version = VERSION.version;
   activeId = '';
 
   private readonly description = META_DESCRIPTION;
