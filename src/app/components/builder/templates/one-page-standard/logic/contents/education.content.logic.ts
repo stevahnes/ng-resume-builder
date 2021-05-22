@@ -27,8 +27,8 @@ export function constructEducationContent(
     cursor.setXCoordinate(standard.MARGIN);
     writeLeft(jsPDFInstance, toUpper(education.institution), cursor);
     cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);
-    const educationPeriodText = `${startCase(education.period.start)} – ${startCase(
-      education.period.end.length > 0 ? education.period.end : UNDEFINED_PERIOD_END
+    const educationPeriodText = `${startCase(education.start)} – ${startCase(
+      education.end.length > 0 ? education.end : UNDEFINED_PERIOD_END
     )}`;
     writeRight(jsPDFInstance, educationPeriodText, cursor);
     enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);

@@ -16,7 +16,7 @@ export interface Header {
   rightDetail: string;
 }
 
-export interface Work {
+export interface OldWork {
   company: string;
   location: string;
   designations: string[];
@@ -24,16 +24,38 @@ export interface Work {
   descriptions: string[];
 }
 
-export interface Education {
+export interface Work {
+  company: string;
+  location: string;
+  designations: Designation[];
+  descriptions: string[];
+}
+
+export interface OldEducation {
   institution: string;
   qualification: string[];
   period: Period;
   honorsAndGrade?: string;
 }
 
+export interface Education {
+  institution: string;
+  qualification: string[];
+  start: string;
+  end: string;
+  honorsAndGrade?: string;
+}
+
 export interface AwardsAndCertification {
   name: string;
   acquiredDate: string;
+}
+
+export interface Designation {
+  title: string;
+  start: string;
+  end: string;
+  descriptions: string[];
 }
 
 export interface Period {

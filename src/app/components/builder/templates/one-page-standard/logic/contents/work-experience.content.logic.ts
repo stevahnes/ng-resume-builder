@@ -1,5 +1,5 @@
 import jsPDF from 'jspdf';
-import { FormatParameters, Period, Standard, Work } from '../../../../models';
+import { Designation, FormatParameters, Standard, Work } from '../../../../models';
 import { Cursor } from '../../../../class';
 import {
   enterAndCheckMargin,
@@ -34,7 +34,6 @@ export function constructWorkExperienceContent(
     enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
     constructWorkDesignationsAndPeriods(
       work.designations,
-      work.periods,
       jsPDFInstance,
       cursor,
       standard,
@@ -49,19 +48,18 @@ export function constructWorkExperienceContent(
 }
 
 function constructWorkDesignationsAndPeriods(
-  designations: string[],
-  periods: Period[],
+  designations: Designation[],
   jsPDFInstance: jsPDF,
   cursor: Cursor,
   standard: Standard,
   pageParameters: FormatParameters
 ): void {
-  designations.forEach((designation, index) => {
+  designations.forEach((designation) => {
     cursor.setXCoordinate(standard.MARGIN);
-    writeLeft(jsPDFInstance, designation, cursor);
+    writeLeft(jsPDFInstance, designation.title, cursor);
     cursor.setXCoordinate(pageParameters.PORTRAIT_WIDTH - standard.MARGIN);
-    const designationPeriodText = `${startCase(periods[index].start)} – ${startCase(
-      periods[index].end.length > 0 ? periods[index].end : UNDEFINED_PERIOD_END
+    const designationPeriodText = `${startCase(designation.start)} – ${startCase(
+      designation.end.length > 0 ? designation.end : UNDEFINED_PERIOD_END
     )}`;
     writeRight(jsPDFInstance, designationPeriodText, cursor);
     enterAndCheckMargin(jsPDFInstance, cursor, standard, pageParameters, DEFAULT_LINE_HEIGHT, 1);
