@@ -40,12 +40,18 @@ export const SAMPLE_RESUME: Resume = {
       company: 'AMADEUS IT GROUP',
       location: 'Singapore',
       designations: [
-        'System Analyst (Software Engineer)',
-        'Amadeus IT Graduate (Technical Business Analyst)'
-      ],
-      periods: [
-        { start: 'April 2020', end: '' },
-        { start: 'July 2018', end: 'March 2020' }
+        {
+          title: 'System Analyst (Software Engineer)',
+          start: 'April 2020',
+          end: '',
+          descriptions: ['']
+        },
+        {
+          title: 'Amadeus IT Graduate (Technical Business Analyst)',
+          start: 'July 2018',
+          end: 'March 2020',
+          descriptions: ['']
+        }
       ],
       descriptions: [
         'Developed key features for three modules within our SaaS-based Airport Management Suite using frameworks.',
@@ -58,8 +64,9 @@ export const SAMPLE_RESUME: Resume = {
     {
       company: 'works applications co., ltd.',
       location: 'Singapore',
-      designations: ['Software Engineer'],
-      periods: [{ start: 'October 2017', end: 'June 2018' }],
+      designations: [
+        { title: 'Software Engineer', start: 'October 2017', end: 'June 2018', descriptions: [''] }
+      ],
       descriptions: [
         'Implemented new features of a mobile application for human resource management in plain JavaScript.',
         'Designed various ways to improve application usability and reduce user input using InVision..',
@@ -69,8 +76,14 @@ export const SAMPLE_RESUME: Resume = {
     {
       company: 'singapore university of technology and design',
       location: 'Singapore',
-      designations: ['Research Officer'],
-      periods: [{ start: 'October 2016', end: 'September 2017' }],
+      designations: [
+        {
+          title: 'Research Officer',
+          start: 'October 2016',
+          end: 'September 2017',
+          descriptions: ['']
+        }
+      ],
       descriptions: [
         'Published a novel open-loop control algorithm for improved locomotion of spherical rolling robots.',
         'Implemented and fine-tuned a new dead-reckoning localization algorithm specifically for VIRGO.',
@@ -82,13 +95,15 @@ export const SAMPLE_RESUME: Resume = {
     {
       institution: 'SINGAPORE UNIVERSITY OF TECHNOLOGY AND DESIGN',
       qualification: ['Bachelor of Engineering (Product Development)'],
-      period: { start: 'May 2013', end: 'September 2016' },
+      start: 'May 2013',
+      end: 'September 2016',
       honorsAndGrade: 'Summa Cum Laude, CGPA: 4.96/5.00'
     },
     {
       institution: 'catholic junior college',
       qualification: ['Singapore-Cambridge GCE A-Level'],
-      period: { start: 'January 2011', end: 'December 2012' },
+      start: 'January 2011',
+      end: 'December 2012',
       honorsAndGrade: 'H3 Essentials of Modern Physics, UAS: 90/90'
     }
   ],
@@ -111,19 +126,10 @@ export const SAMPLE_RESUME: Resume = {
       name: 'IES Gold Medal & Keppel Award of Excellence (Senior Year)',
       acquiredDate: 'September 2016'
     },
-    {
-      name: 'Keppel Award of Excellence (Junior Year)',
-      acquiredDate: 'March 2016'
-    },
-    {
-      name: 'Di Yerbury International Scholars Award',
-      acquiredDate: 'July 2014'
-    },
+    { name: 'Keppel Award of Excellence (Junior Year)', acquiredDate: 'March 2016' },
+    { name: 'Di Yerbury International Scholars Award', acquiredDate: 'July 2014' },
     { name: 'Tay Chen Hui Memorial Award', acquiredDate: 'July 2013' },
     { name: 'ASEAN Undergraduate Scholarship', acquiredDate: 'May 2013' },
-    {
-      name: 'Ministry of Education School-based Scholarship',
-      acquiredDate: 'November 2008'
-    }
+    { name: 'Ministry of Education School-based Scholarship', acquiredDate: 'November 2008' }
   ]
 };

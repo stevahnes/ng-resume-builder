@@ -4,7 +4,7 @@ import { saveAs } from 'file-saver';
 import jsPDF from 'jspdf';
 import { Cursor } from './class';
 import { EMPTY_RESUME } from './constants';
-import { AwardsAndCertification, Education, Resume, Work } from './models';
+import { AwardsAndCertification, Education, OldEducation, OldWork, Resume, Work } from './models';
 import { ResumeFormService } from './services/resume-form.service';
 import { OnePageStandard } from './templates/one-page-standard/constants/one-page-standard.constants';
 import { generateOnePageStandardPDF } from './templates/one-page-standard/logic/core.logic';
@@ -121,19 +121,21 @@ export class BuilderComponent implements OnInit {
       for (const [index, designation] of work.designations.entries()) {
         if (index < 1) {
           (workForm.get('designations') as FormArray).push(
-            this.formService.buildGenericControl(designation, true)
+            this.formService.buildGenericControl(designation.title, true)
           );
+          const periodForm: FormGroup = this.formService.buildPeriodForm();
+          (periodForm.get('start') as AbstractControl).setValue(designation.start);
+          (periodForm.get('end') as AbstractControl).setValue(designation.end);
+          (workForm.get('periods') as FormArray).push(periodForm);
         } else {
           (workForm.get('designations') as FormArray).push(
-            this.formService.buildGenericControl(designation)
+            this.formService.buildGenericControl(designation.title)
           );
+          const periodForm: FormGroup = this.formService.buildPeriodForm();
+          (periodForm.get('start') as AbstractControl).setValue(designation.start);
+          (periodForm.get('end') as AbstractControl).setValue(designation.end);
+          (workForm.get('periods') as FormArray).push(periodForm);
         }
-      }
-      for (const period of work.periods) {
-        const periodForm: FormGroup = this.formService.buildPeriodForm();
-        (periodForm.get('start') as AbstractControl).setValue(period.start);
-        (periodForm.get('end') as AbstractControl).setValue(period.end);
-        (workForm.get('periods') as FormArray).push(periodForm);
       }
       for (const [index, description] of work.descriptions.entries()) {
         if (index < 1) {
@@ -166,8 +168,8 @@ export class BuilderComponent implements OnInit {
         }
       }
       (educationForm.get('period') as AbstractControl).setValue({
-        start: education.period.start,
-        end: education.period.end
+        start: education.start,
+        end: education.end
       });
       (educationForm.get('honorsAndGrade') as AbstractControl).setValue(education.honorsAndGrade);
       (resumeForm.get('education') as FormArray).push(educationForm);
@@ -206,14 +208,39 @@ export class BuilderComponent implements OnInit {
   }
 
   private updateResumeWork(resume: Resume, resumeForm: FormGroup): void {
-    const workFormArrayValues: Work[] = this.formService.getResumeWorkFormArray(resumeForm).value;
+    const oldWorkFormArrayValues: OldWork[] = this.formService.getResumeWorkFormArray(resumeForm)
+      .value;
+    const workFormArrayValues: Work[] = oldWorkFormArrayValues.map((value: OldWork) => {
+      const work: Work = {
+        company: value.company,
+        location: value.location,
+        designations: [],
+        descriptions: value.descriptions
+      };
+      value.designations.forEach((designation, index) => {
+        work.designations.push({
+          title: designation,
+          start: value.periods[index].start,
+          end: value.periods[index].end,
+          descriptions: ['']
+        });
+      });
+      return work;
+    });
     resume.work = [...workFormArrayValues];
   }
 
   private updateResumeEducation(resume: Resume, resumeForm: FormGroup): void {
-    const educationFormArrayValues: Education[] = this.formService.getResumeEducationFormArray(
+    const oldEducationFormArrayValues: OldEducation[] = this.formService.getResumeEducationFormArray(
       resumeForm
     ).value;
+    const educationFormArrayValues: Education[] = oldEducationFormArrayValues.map((value) => ({
+      institution: value.institution,
+      qualification: value.qualification,
+      start: value.period.start,
+      end: value.period.end,
+      honorsAndGrade: value.honorsAndGrade
+    }));
     resume.education = [...educationFormArrayValues];
   }
 

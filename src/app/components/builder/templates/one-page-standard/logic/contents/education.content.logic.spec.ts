@@ -57,10 +57,8 @@ describe('education', () => {
       );
       expect(textSpy.calls.all()[i * 4].args[0]).toEqual(toUpper(resume.education[i].institution));
       expect(textSpy.calls.all()[i * 4 + 1].args[0]).toEqual(
-        `${startCase(resume.education[i].period.start)} – ${startCase(
-          resume.education[i].period.end.length > 0
-            ? resume.education[i].period.end
-            : UNDEFINED_PERIOD_END
+        `${startCase(resume.education[i].start)} – ${startCase(
+          resume.education[i].end.length > 0 ? resume.education[i].end : UNDEFINED_PERIOD_END
         )}`
       );
       expect(textSpy.calls.all()[i * 4 + 2].args[0]).toEqual(resume.education[i].qualification);

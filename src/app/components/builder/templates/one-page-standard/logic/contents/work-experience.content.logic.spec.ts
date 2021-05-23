@@ -66,12 +66,12 @@ describe('Work', () => {
           A4Parameters.PORTRAIT_WIDTH - OnePageStandard.MARGIN
         );
         expect(textSpy.calls.all()[textPointer + j * 2].args[0]).toEqual(
-          resume.work[i].designations[j]
+          resume.work[i].designations[j].title
         );
         expect(textSpy.calls.all()[textPointer + j * 2 + 1].args[0]).toEqual(
-          `${startCase(resume.work[i].periods[j].start)} – ${startCase(
-            resume.work[i].periods[j].end.length > 0
-              ? resume.work[i].periods[j].end
+          `${startCase(resume.work[i].designations[j].start)} – ${startCase(
+            resume.work[i].designations[j].end.length > 0
+              ? resume.work[i].designations[j].end
               : UNDEFINED_PERIOD_END
           )}`
         );
