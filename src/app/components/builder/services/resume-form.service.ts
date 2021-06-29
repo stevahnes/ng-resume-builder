@@ -27,7 +27,7 @@ export class ResumeFormService {
     }
     return this.formBuilder.group({
       header: this.buildHeaderForm(),
-      profile: ['', [Validators.required, Validators.maxLength(500)]],
+      profile: ['', [Validators.required]],
       competencies: [[], [Validators.required]],
       work: this.formBuilder.array([this.buildWorkForm()]),
       education: this.formBuilder.array([this.buildEducationForm()]),
