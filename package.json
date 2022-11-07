@@ -26,6 +26,7 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@newrelic/netlify-plugin": "^1.0.2",
     "@ng-bootstrap/ng-bootstrap": "^9.0.0",
     "@ng-select/ng-select": "^6.1.0",
     "bootstrap": "^4.5.0",
