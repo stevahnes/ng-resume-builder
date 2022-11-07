@@ -1,4 +1,5 @@
-package = "@newrelic/netlify-plugin"
+[[plugins]]
+package = "@aaronbassett/newrelic-netlify-plugin"
 
   [plugins.inputs]
     newrelicAccountId = "3688025"
