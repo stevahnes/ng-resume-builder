@@ -1,9 +1,0 @@
-[[plugins]]
-package = "@aaronbassett/newrelic-netlify-plugin"
-
-  [plugins.inputs]
-    newrelicAccountId = "3688025"
-    newrelicLicenseKey = "187a38a28d0a69e4dca7b0bf3394adb2cfb6NRAL"
-    newrelicBrowserLicenseKey = "NRJS-c0868bda5e8693387cf"
-    newrelicAppId = "1588745515"
-    enableBrowserMonitoring = true
